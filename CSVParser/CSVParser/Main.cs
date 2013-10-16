@@ -9,10 +9,19 @@ namespace CSVParser
 		
 		public static void Main (string[] args)
 		{
+			String archivo;
+			//"/home/sdarkland/Repositorios/CSVParser/registro.csv"
 
-			try {
+			Console.Write("Ingrese ruta del archivo a leer: ");
+			archivo = Console.ReadLine();
+			 new MainClass().Lector(archivo);
 
-				StreamReader reader = new StreamReader("/home/sdarkland/Repositorios/CSVParser/registro.csv");
+		}
+
+		public void Lector(string ruta){
+		try {
+
+				StreamReader reader = new StreamReader(ruta);
 
 				String linea = reader.ReadLine();
 				ArrayList lista = new ArrayList();
@@ -34,10 +43,21 @@ namespace CSVParser
 
 					reader.Close();
 
+				for(int i = 0; i <= lista.Count-1 ; i++)
+				{
+					Persona per = (Persona)lista[i];
+
+				Console.WriteLine("|" + per.id + "|" + per.nombre + "|" + per.domicilio + "|" + per.telefono + "|");
+	
+				}
+
+
 			} catch(Exception e) {
+
 				Console.WriteLine("Error \n No se encuentra registro");
 
 			}
 		}
+
 	}
 }
